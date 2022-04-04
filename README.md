@@ -1,12 +1,11 @@
-# USC SAIL MediaEval 2020 Submission
+# USC SAIL - MediaEval 2020
 MediaEval 2020: Emotions and Themes in Music
 
 This repo is based on the USC SAIL submission for [MediaEval 2020](https://multimediaeval.github.io/editions/2020/tasks/music/), but it is designed to be easy to setup and evaluate for general music tagging problems. Our ensemble model won the [MediaEval 2020 challenge](https://multimediaeval.github.io/2020-Emotion-and-Theme-Recognition-in-Music-Task/results).
 
 ## Requirements
 
-1. Python >= 3.7
-2. PyTorch >= 1.2
+Python >= 3.7
 
 ```
 pip install -r requirements.txt
