@@ -37,11 +37,11 @@ python -u main.py --data_path /path/to/npy_audios/ \
 
 ```
 python -u eval.py --data_path /path/to/npy_data/
-			  --splits_path /path/to/splits_tsvs/
-			  --model_load_path /path/to/model/best_model.pth
-			  --use_val_split 0
-			  --save_predictions 1
-			  --save_path /output/path/
+		  --splits_path /path/to/splits_tsvs/
+		  --model_load_path /path/to/model/best_model.pth
+		  --use_val_split 0
+		  --save_predictions 1
+		  --save_path /output/path/
 ```
 
 ## Loss functions
