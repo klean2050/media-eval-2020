@@ -15,7 +15,7 @@ pip install -r requirements.txt
 
 Given a directory `audio_dir` of audio files (e.g., the mood/theme [split](https://github.com/MTG/mtg-jamendo-dataset) from MTG-Jamendo), the following gives a brief usage example for training and evaluating a music tagging model:
 
-1. Downsample and convert all audio files to npy
+1. Downsample and convert all audio files to npy:
 ```
 python -u eval/resample2npy.py run audio_dir
 ```
@@ -27,11 +27,11 @@ python -u eval/resample2npy.py run audio_dir
 
 ```
 python -u main.py --data_path /path/to/npy_audios/ \
-				  --splits_path /path/to/splits_tsv/ \
-				  --model_save_path /path/to/outputs/ \
-				  --use_mixup 1 \
-				  --loss_function bce \
-				  --sampling_type standard
+	--splits_path /path/to/splits_tsv/ \
+	--model_save_path /path/to/outputs/ \
+	--use_mixup 1 \
+	--loss_function bce \
+	--sampling_type standard
 ```
 
 4. Run *eval.py* to evaluate a trained model on given test split:
@@ -62,4 +62,4 @@ Our model is a modified version of the [Short-Chunk CNN with Residual Connection
 
 ## Dataset
 
-The low-level feature extract layers for the CNN were pretrained on MSD. We used the training, validation, and test splits as specified by the challenge. We combined our training set with instances with matching tags from the [Music4All](https://ieeexplore.ieee.org/document/9145170) dataset.
+The low-level CNN layers were pretrained on MSD. We used the training, validation, and test splits as specified by the challenge. We combined our training set with instances with matching tags from the [Music4All](https://ieeexplore.ieee.org/document/9145170) dataset.
