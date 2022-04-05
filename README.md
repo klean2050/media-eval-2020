@@ -20,8 +20,7 @@ Given a directory `audio_dir` of audio files (e.g., the mood/theme [split](https
 python -u eval/resample2npy.py run audio_dir
 ```
 
-2. Create a .tsv file with music tag labels, as specified in *data_loader.py*. 
-	- Such tsv examples can be found under `example_splits/`. Dataloader bahavior can be modified in the `read_file` function. Additionally, the tags label set (currently set to mood/theme tags for the challenge) can be modified via the *TAGS* list in *data_loader.py*.
+2. Create a .tsv file with music tag labels, as specified in *data_loader.py*. Such tsv examples can be found under `example_splits/`. Dataloader bahavior can be modified in the `read_file` function. Additionally, the tags label set (currently set to mood/theme tags for the challenge) can be modified via the *TAGS* list in *data_loader.py*.
 
 3. Run *train.py*. The following example uses BCE loss and [mixup](https://arxiv.org/pdf/1710.09412). A pretrained model can be loaded by setting `model_load_path` to point to a pytorch state_dict, such as *best_model.py*, pretrained on [MSD](https://arxiv.org/abs/2006.00751). Note that only weights from layers with matching names will be loaded.
 
@@ -38,11 +37,11 @@ python -u main.py --data_path /path/to/npy_audios/ \
 
 ```
 python -u eval.py --data_path /path/to/npy_data/
-				  --splits_path /path/to/splits_tsvs/
-				  --model_load_path /path/to/model/best_model.pth
-				  --use_val_split 0
-				  --save_predictions 1
-				  --save_path /output/path/
+			  --splits_path /path/to/splits_tsvs/
+			  --model_load_path /path/to/model/best_model.pth
+			  --use_val_split 0
+			  --save_predictions 1
+			  --save_path /output/path/
 ```
 
 ## Loss functions
