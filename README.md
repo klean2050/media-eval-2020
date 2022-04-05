@@ -36,11 +36,11 @@ python -u main.py --data_path /path/to/npy_audios/ \
 4. Run *eval.py* to evaluate a trained model on given test split:
 
 ```
-python -u eval.py --data_path /path/to/npy_data/
-		  --splits_path /path/to/splits_tsvs/
-		  --model_load_path /path/to/model/best_model.pth
-		  --use_val_split 0
-		  --save_predictions 1
+python -u eval.py --data_path /path/to/npy_data/ \
+		  --splits_path /path/to/splits_tsvs/ \
+		  --model_load_path /path/to/model/best_model.pth \
+		  --use_val_split 0 \
+		  --save_predictions 1 \
 		  --save_path /output/path/
 ```
 
@@ -48,7 +48,7 @@ python -u eval.py --data_path /path/to/npy_data/
 
 We provide multiclass, multilabel implementations for the following loss functions (see *losses.py*). They can be specified via the `loss_function` argument in *main.py*.
 
-- BCE loss - argument: `bce`
+- [BCE loss](https://pytorch.org/docs/stable/generated/torch.nn.BCEWithLogitsLoss.html) - argument: `bce`
 - [Focal loss](https://arxiv.org/abs/1708.02002) - argument: `focal_loss`
 - [Class-balanced loss](https://arxiv.org/abs/1901.05555) - argument: `cb_focal_loss`
 - [Distribution-balanced loss](https://arxiv.org/abs/2007.09654) - argument: `db_focal_loss`
