@@ -26,12 +26,12 @@ python -u eval/resample2npy.py run audio_dir
 3. Run *train.py*. The following example uses BCE loss and [mixup](https://arxiv.org/pdf/1710.09412). A pretrained model can be loaded by setting `model_load_path` to point to a pytorch state_dict, such as *best_model.py*, pretrained on [MSD](https://arxiv.org/abs/2006.00751). Note that only weights from layers with matching names will be loaded.
 
 ```
-python -u main.py --data_path /path/to/npy_audios/ \
-	--splits_path /path/to/splits_tsv/ \
-	--model_save_path /path/to/outputs/ \
-	--use_mixup 1 \
-	--loss_function bce \
-	--sampling_type standard
+python -u main.py	--data_path /path/to/npy_audios/ \
+		--splits_path /path/to/splits_tsv/ \
+		--model_save_path /path/to/outputs/ \
+		--use_mixup 1 \
+		--loss_function bce \
+		--sampling_type standard
 ```
 
 4. Run *eval.py* to evaluate a trained model on given test split:
