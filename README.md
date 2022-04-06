@@ -5,7 +5,7 @@ This repo is based on the USC SAIL submission for [MediaEval 2020](https://multi
 
 ## Requirements
 
-Python >= 3.7
+Python 3.7 was used for this implementation.
 
 ```
 pip install -r requirements.txt
@@ -57,11 +57,7 @@ Additionally, we provide implementations for *mixup* (set `use_mixup` flag to 1)
 
 ## Model
 
-Our model is a modified version of the [Short-Chunk CNN with Residual Connections](https://arxiv.org/abs/2006.00751) by Won et al.
-
-## Dataset
-
-The low-level CNN layers were pretrained on MSD. We used the training, validation, and test splits as specified by the challenge. We combined our training set with instances with matching tags from the [Music4All](https://ieeexplore.ieee.org/document/9145170) dataset.
+Our model is a modified version of the [Short-Chunk CNN with Residual Connections](https://arxiv.org/abs/2006.00751) by Won et al. The low-level CNN layers were pretrained on MSD. We used the training, validation, and test splits as specified by the challenge. We combined our training set with instances with matching tags from the [Music4All](https://ieeexplore.ieee.org/document/9145170) dataset.
 
 ## Citation
 
