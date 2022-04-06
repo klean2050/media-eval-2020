@@ -1,7 +1,7 @@
 # USC SAIL - MediaEval 2020
 MediaEval 2020: Emotions and Themes in Music
 
-This repo is based on the USC SAIL [submission](http://ceur-ws.org/Vol-2882/paper67.pdf) for [MediaEval 2020](https://multimediaeval.github.io/editions/2020/tasks/music/), but it is designed to be easy to setup and evaluate for general music tagging problems. Our ensemble model won the [MediaEval 2020 challenge](https://multimediaeval.github.io/2020-Emotion-and-Theme-Recognition-in-Music-Task/results).
+This repo is based on the USC SAIL submission for [MediaEval 2020](https://multimediaeval.github.io/editions/2020/tasks/music/), but it is designed to be easy to setup and evaluate for general music tagging problems. Our ensemble model won the [MediaEval 2020 challenge](https://multimediaeval.github.io/2020-Emotion-and-Theme-Recognition-in-Music-Task/results).
 
 ## Requirements
 
@@ -65,7 +65,7 @@ The low-level CNN layers were pretrained on MSD. We used the training, validatio
 
 ## Citation
 
-If you find our approach interesting for your research, please consider citing:
+If you find our approach interesting for your research, please consider citing our [paper](http://ceur-ws.org/Vol-2882/paper67.pdf):
 ```
 @inproceedings{knox2020mediaeval,
   title={MediaEval 2020 Emotion and Theme Recognition in Music task: Loss Function Approaches for Multi-label Music Tagging},
