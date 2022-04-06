@@ -17,7 +17,7 @@ Given a directory `audio_dir` of audio files (e.g., the mood/theme [split](https
 
 1. Downsample and convert all audio files to npy:
 ```
-python -u eval/resample2npy.py run audio_dir
+python -u resample2npy.py run audio_dir
 ```
 
 2. Create a .tsv file with music tag labels, as specified in *data_loader.py*. Such tsv examples can be found under `example_splits/`. Dataloader bahavior can be modified in the `read_file` function. Additionally, the tags label set (currently set to mood/theme tags for the challenge) can be modified via the *TAGS* list in *data_loader.py*.
