@@ -30,13 +30,7 @@ Remaining columns: Tags for the given song, separated by tabs
 
 def read_file(tsv_file):
     tracks = {}
-    split = (
-        "validation"
-        if "validation" in tsv_file
-        else "test"
-        if "test" in tsv_file
-        else "train"
-    )
+    split = tsv_file[:-4].split("-")[-1]
 
     with open(tsv_file) as fp:
         reader = csv.reader(fp, delimiter="\t")
@@ -72,7 +66,7 @@ class AudioFolder(data.Dataset):
             train_file = os.path.join(TSV_PATH, "jamendo_moodtheme-train.tsv")
             self.file_dict = read_file(train_file)
         elif self.split == "VALID":
-            val_file = os.path.join(TSV_PATH, "jamendo_moodtheme-validation.tsv")
+            val_file = os.path.join(TSV_PATH, "jamendo_moodtheme-valid.tsv")
             self.file_dict = read_file(val_file)
         else:
             test_file = os.path.join(TSV_PATH, "jamendo_moodtheme-test.tsv")
