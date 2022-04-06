@@ -65,9 +65,10 @@ The low-level CNN layers were pretrained on MSD. We used the training, validatio
 
 ## Citation
 
+If you find our approach interesting for your research, please consider citing:
 ```
 @inproceedings{knox2020mediaeval,
-  title={MediaEval 2020 Emotion and Theme Recognition in Music task: Loss Function approaches for multi-label Music Tagging},
+  title={MediaEval 2020 Emotion and Theme Recognition in Music task: Loss Function Approaches for Multi-label Music Tagging},
   author={Knox, Dillon and Greer, Timothy and Ma, Benjamin and Kuo, Emily and Somandepalli, Krishna and Narayanan, Shrikanth},
   booktitle={CEUR Workshop Proceedings},
   year={2020}
