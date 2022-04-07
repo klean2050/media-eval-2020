@@ -27,7 +27,7 @@ class Predict(object):
         self.model = ShortChunkCNN_Res()
         self.model.to(self.device)
 
-        state = torch.load(self.model_load_path)
+        state = torch.load(self.model_load_path, map_location=self.device)
         if "spec.mel_scale.fb" in state.keys():
             self.model.spec.mel_scale.fb = state["spec.mel_scale.fb"]
         self.model.load_state_dict(state)
@@ -63,7 +63,9 @@ class Predict(object):
                 axis=0,
             )
             x = Variable(x.to(self.device))
-            y = torch.tensor([ground_truth.astype("float32") for _ in range(self.batch_size)])
+            y = torch.tensor(
+                [ground_truth.astype("float32") for _ in range(self.batch_size)]
+            )
             y = y.to(self.device)
 
             out = self.model(x)
@@ -91,11 +93,15 @@ class Predict(object):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
 
     parser.add_argument("--num_workers", type=int, default=0)
     parser.add_argument("--batch_size", type=int, default=32)
-    parser.add_argument("--model_load_path", type=str, default="data/pretrained_models/")
+    parser.add_argument(
+        "--model_load_path", type=str, default="data/pretrained_models/"
+    )
     parser.add_argument("--data_path", type=str, default="../data")
     parser.add_argument("--splits_path", type=str, default="./splits/")
     parser.add_argument("--use_val_split", type=int, default=0)
