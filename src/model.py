@@ -2,8 +2,7 @@
 Short-chunk CNN with residual connections adapted from
 Won et al. https://ieeexplore.ieee.org/abstract/document/9053669
 """
-import torch.nn as nn
-import torchaudio
+import torch.nn as nn, torchaudio
 
 import data_loader as train_loader
 
@@ -17,9 +16,7 @@ class Res_2d(nn.Module):
             input_channels, output_channels, shape, stride=stride, padding=shape // 2
         )
         self.bn_1 = nn.BatchNorm2d(output_channels)
-        self.conv_2 = nn.Conv2d(
-            output_channels, output_channels, shape, padding=shape // 2
-        )
+        self.conv_2 = nn.Conv2d(output_channels, output_channels, shape, padding=shape // 2)
         self.bn_2 = nn.BatchNorm2d(output_channels)
 
         # residual

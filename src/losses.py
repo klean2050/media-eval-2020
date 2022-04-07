@@ -1,7 +1,5 @@
-import torch
+import sys, torch, torch.nn as nn
 import torch.nn.functional as F
-import torch.nn as nn
-import sys
 
 
 """
@@ -159,9 +157,7 @@ class ClassBalancedLoss(nn.Module):
         else:
             y = input
 
-        loss = CB_loss(
-            y, target, self.samples_per_class, self.beta, self.gamma, self.loss_function
-        )
+        loss = CB_loss(y, target, self.samples_per_class, self.beta, self.gamma, self.loss_function)
 
         if self.reduction == "mean":
             return torch.mean(loss)
@@ -209,12 +205,8 @@ def DB_loss(
     v_i = v_i.to(target.device)
 
     os_input = input - v_i  # offset input by class-specific bias
-    ls_input = (
-        (target) + ((1 - target) * (nt_lambda))
-    ) * os_input  # Further scale negative logit
-    p_input = torch.sigmoid(
-        ls_input
-    )  # Apply activation function to logits to get probabilities
+    ls_input = ((target) + ((1 - target) * (nt_lambda))) * os_input  # Further scale negative logit
+    p_input = torch.sigmoid(ls_input)  # Apply activation function to logits to get probabilities
 
     # nt_lambda is the regularizer for the negative terms
     nt_lambda = (target) + (

@@ -8,9 +8,7 @@ Both the validation and test sets are from the following Jamendo split:
 https://github.com/MTG/mtg-jamendo-dataset/tree/master/data/splits/split-0
 """
 # coding: utf-8
-import os
-import csv
-import numpy as np
+import os, csv, numpy as np
 from torch.utils import data
 from sklearn.preprocessing import LabelBinarizer
 

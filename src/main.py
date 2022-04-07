@@ -9,9 +9,8 @@ are forked from the sota-music-tagging-models repository
 See their model comparison paper at https://arxiv.org/abs/2006.00751
 """
 
-import os
-import numpy as np
-import argparse
+import os, argparse, numpy as np
+
 from train import Solver
 from data_loader import get_audio_loader
 
@@ -37,9 +36,7 @@ def main(config):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter
-    )
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     # Parameters for the training procedure
     parser.add_argument("--num_workers", type=int, default=0)

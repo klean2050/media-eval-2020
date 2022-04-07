@@ -1,39 +1,25 @@
-import os
-import time
-import numpy as np
+import os, torch, torch.nn as nn
+import time, datetime, tqdm, numpy as np
 from sklearn import metrics
-import datetime
-import tqdm
-import torch
-import torch.nn as nn
+from torch.autograd import Variable
 from sklearn.preprocessing import LabelBinarizer
 from torch.utils.tensorboard import SummaryWriter
-from torch.autograd import Variable
 
 import losses
 from data_loader import read_file
 from model import ShortChunkCNN_Res
 from utils import TAGS
 
-"""
-Add mixup during training, modified version of
-https://github.com/facebookresearch/mixup-cifar10
-"""
-
 
 def mixup_data(x, y, alpha=1.0, use_cuda=True):
-    """Returns mixed inputs, pairs of targets, and lambda"""
-    if alpha > 0:
-        lam = np.random.beta(alpha, alpha)
-    else:
-        lam = 1
-
-    batch_size = x.size()[0]
-    if use_cuda:
-        index = torch.randperm(batch_size).cuda()
-    else:
-        index = torch.randperm(batch_size)
-
+    """
+    Add mixup during training, modified version of
+    https://github.com/facebookresearch/mixup-cifar10
+    Returns mixed inputs, pairs of targets, and lambda
+    """
+    lam = np.random.beta(alpha, alpha) if alpha > 0 else 1
+    index = torch.randperm(x.size()[0])
+    index = index.cuda() if use_cuda else index
     mixed_x = lam * x + (1 - lam) * x[index, :]
     y_a, y_b = y, y[index]
     return mixed_x, y_a, y_b, lam
@@ -96,9 +82,7 @@ class Solver(object):
 
         if self.is_cuda:
             self.model.cuda()
-        self.optimizer = torch.optim.Adam(
-            self.model.parameters(), self.lr, weight_decay=1e-4
-        )
+        self.optimizer = torch.optim.Adam(self.model.parameters(), self.lr, weight_decay=1e-4)
 
     def load_pretrained(self, filename):
         pretrained_dict = torch.load(filename)
@@ -180,9 +164,7 @@ class Solver(object):
             # validation
             best_metric = self.validation(best_metric, epoch)
             # schedule optimizer
-            current_optimizer, drop_counter = self.opt_schedule(
-                current_optimizer, drop_counter
-            )
+            current_optimizer, drop_counter = self.opt_schedule(current_optimizer, drop_counter)
 
         time_passed = datetime.timedelta(seconds=time.time() - start_t)
         print(f"Train finished. Elapsed: {time_passed} sec.")
@@ -290,14 +272,10 @@ class Solver(object):
 
             # load and split
             x = self.get_tensor(line, num_val_chunks)
-            ground_truth = np.sum(
-                self.mlb.transform(self.file_dict[line]["tags"]), axis=0
-            )
+            ground_truth = np.sum(self.mlb.transform(self.file_dict[line]["tags"]), axis=0)
 
             x = self.to_var(x)
-            y = torch.tensor(
-                [ground_truth.astype("float32") for i in range(num_val_chunks)]
-            ).cuda()
+            y = torch.tensor([ground_truth.astype("float32") for i in range(num_val_chunks)]).cuda()
             out = self.model(x)
 
             loss = reconst_loss(out, y)
