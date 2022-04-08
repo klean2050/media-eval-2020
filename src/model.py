@@ -16,7 +16,9 @@ class Res_2d(nn.Module):
             input_channels, output_channels, shape, stride=stride, padding=shape // 2
         )
         self.bn_1 = nn.BatchNorm2d(output_channels)
-        self.conv_2 = nn.Conv2d(output_channels, output_channels, shape, padding=shape // 2)
+        self.conv_2 = nn.Conv2d(
+            output_channels, output_channels, shape, padding=shape // 2
+        )
         self.bn_2 = nn.BatchNorm2d(output_channels)
 
         # residual
@@ -104,6 +106,7 @@ class ShortChunkCNN_Res(nn.Module):
         if x.size(-1) != 1:
             x = nn.MaxPool1d(x.size(-1))(x)
         x = x.squeeze(2)
+        x_chk = x.clone()
 
         # Dense
         x = self.dense_1(x)
@@ -112,4 +115,4 @@ class ShortChunkCNN_Res(nn.Module):
         x = self.dropout(x)
         x = self.dense_2(x)
 
-        return x
+        return x, x_chk

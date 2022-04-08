@@ -13,11 +13,12 @@ pip install -r requirements.txt
 
 ## Usage
 
-Given a directory `audio_dir` of audio files (e.g., the mood/theme [split](https://github.com/MTG/mtg-jamendo-dataset) from MTG-Jamendo), the following gives a brief usage example for training and evaluating a music tagging model:
+Given a directory `audio_dir` of audio files (e.g., the mood/theme [split](https://github.com/MTG/mtg-jamendo-dataset) from MTG-Jamendo) and an output folder, the following gives a brief usage example for training and evaluating a music tagging model:
 
 1. Downsample and convert all audio files to npy:
 ```
-python -u resample2npy.py run audio_dir
+python -u resample2npy.py --data_path audio_dir \
+			  --output_path /path/to/npy_audios/
 ```
 
 2. Create a .tsv file with music tag labels, as specified in *data_loader.py*. Such tsv examples can be found under `example_splits/`. Dataloader bahavior can be modified in the `read_file` function. Additionally, the tags label set (currently set to mood/theme tags for the challenge) can be modified via the *TAGS* list in *data_loader.py*.
